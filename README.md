@@ -1,4 +1,15 @@
-# 🚗 Vehicle Damage Classification Using Deep Learning
+# 🚗 Vehicle Damage Classification
+
+<p align="center">
+  <img src="screenshots/home.png" alt="Vehicle Damage Classifier" width="49%">
+  <img src="screenshots/prediction.png" alt="Prediction Result" width="49%">
+</p>
+
+<p align="center">
+  <b>AI-powered vehicle damage classification using ResNet50 + Flask</b>
+</p>
+
+---
 
 An end-to-end deep learning project that classifies vehicle images based on **damage type and vehicle area** using a fine-tuned **ResNet50** model. The trained model is integrated with a **Flask web application** that provides an interactive interface for uploading an image and receiving a prediction with confidence scores.
 
