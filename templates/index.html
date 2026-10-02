@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-powered car damage classification using ResNet50.">
+  <title>Car Damage Classifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">🚘</div>
+        <span>Car Damage Classifier</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-badge"><span class="pulse-dot"></span> AI VISION MODEL</div>
+      </div>
+
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> DEEP LEARNING VEHICLE INSPECTION</div>
+
+        <h1>Detect Car Damage<br><span>with AI</span></h1>
+
+        <p class="hero-copy">
+          Upload an image of a car and get an instant prediction whether it is
+          Normal, Breakage or Crushed — Front or Rear.
+        </p>
+
+        <form id="predictionForm" class="upload-card">
+          <input id="imageInput" name="image" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+
+          <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop an image">
+            <div id="uploadState">
+              <div class="upload-icon">↥</div>
+              <h3>Drag &amp; drop an image here</h3>
+              <div class="or">or</div>
+              <button id="chooseButton" class="choose-button" type="button">▧ &nbsp; Choose Image</button>
+              <p>Supported formats: JPG, JPEG, PNG</p>
+            </div>
+
+            <div id="previewState" class="preview-state hidden">
+              <img id="imagePreview" src="" alt="Selected vehicle preview">
+              <div class="preview-overlay">✓ Image ready</div>
+              <button id="changeButton" class="change-button" type="button">Change Image</button>
+            </div>
+          </div>
+
+          <button id="analyzeButton" class="analyze-button" type="submit" disabled>
+            <span class="button-text">Analyze Damage</span>
+            <span class="spinner hidden"></span>
+          </button>
+
+          <div id="errorMessage" class="error-message hidden"></div>
+        </form>
+
+        <div class="feature-row">
+          <div class="feature">
+            <div class="feature-icon">ϟ</div>
+            <div><strong>Fast</strong><small>Prediction</small></div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">◎</div>
+            <div><strong>Accurate</strong><small>Classification</small></div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🚘</div>
+            <div><strong>6 Damage</strong><small>Categories</small></div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">◈</div>
+            <div><strong>Built with</strong><small>Deep Learning</small></div>
+          </div>
+        </div>
+
+        <div id="resultCard" class="result-card hidden">
+          <div class="result-header">
+            <div>
+              <div id="resultStatus" class="result-status"><span class="status-dot"></span> DAMAGE DETECTED</div>
+              <h2 id="resultPrediction">Rear Breakage</h2>
+            </div>
+            <img id="resultImage" src="" alt="Analyzed vehicle">
+          </div>
+
+          <div class="confidence-wrap">
+            <div class="confidence-label"><span>Confidence</span><strong id="confidenceValue">0%</strong></div>
+            <div class="progress"><span id="confidenceBar"></span></div>
+          </div>
+
+          <div class="detail-grid">
+            <div><span>Vehicle Area</span><strong id="areaValue">Rear</strong></div>
+            <div><span>Damage Type</span><strong id="damageValue">Breakage</strong></div>
+            <div><span>Model</span><strong>ResNet50</strong></div>
+            <div><span>Input Size</span><strong>224 × 224</strong></div>
+          </div>
+
+          <div class="probabilities">
+            <div class="prob-title">Class probabilities</div>
+            <div id="probabilityList"></div>
+          </div>
+
+          <button id="newAnalysisButton" class="outline-button" type="button">↻ &nbsp; Analyze Another Image</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
